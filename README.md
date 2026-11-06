@@ -1,6 +1,8 @@
-# Graduate Career Agent
+# Gradpilot: Graduate Career Agent
 
-An AI-powered career coach designed to help fresh graduates secure jobs, internships, and scholarships.
+An AI career coach that helps fresh graduates get jobs, internships and scholarships. It is a FastAPI web app with user accounts. A Llama 3.2 model (through the Hugging Face Inference API) powers chat coaching, CV tailoring, job-gap analysis and LaTeX CV generation.
+
+**[Watch the demo](https://www.loom.com/share/fad7c1952eca40879a0ec6fd727c2015)**
 
 ## Features
 
@@ -32,7 +34,7 @@ An AI-powered career coach designed to help fresh graduates secure jobs, interns
 
 1.  **Clone the repository**
     ```bash
-    git clone <your-repo-url>
+    git clone https://github.com/MHVVD/graduate-career-agent.git
     cd graduate-career-agent
     ```
 
@@ -42,21 +44,28 @@ An AI-powered career coach designed to help fresh graduates secure jobs, interns
     ```
 
 3.  **Environment Variables**
-    Create a `.env` file based on `.env.example` and add your Hugging Face token:
+    Copy `.env.example` to `.env` and fill in your Hugging Face token and a JWT signing secret:
     ```
     HF_TOKEN=your_token_here
+    SECRET_KEY=a_long_random_string
     ```
 
 4.  **Run Locally**
     ```bash
     python main.py
     ```
-    Visit `http://localhost:8000` in your browser.
+    Visit `http://localhost:8000` in your browser, then register an account.
+
+5.  **Run the end-to-end tests** (with the server running on port 8000)
+    ```bash
+    pytest test_auth.py test_chat.py
+    ```
 
 ## Deployment
 This project includes a `Dockerfile` and `Procfile` for easy deployment on platforms like Render or Heroku.
 
 ## Technologies
-- Python (FastAPI)
-- HTML/CSS/JS (Vanilla)
-- Hugging Face Inference API (Meta Llama 3)
+- Python (FastAPI, SQLAlchemy + SQLite, JWT auth)
+- HTML/CSS/JS (vanilla)
+- Hugging Face Inference API (Meta Llama 3.2 3B Instruct)
+- LaTeX for PDF CV generation
